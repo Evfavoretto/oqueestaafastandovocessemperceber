@@ -1,94 +1,206 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Diagnóstico Gratuito | O Seu Lugar®</title>
-  <meta name="description" content="Diagnóstico gratuito: descubra o que está afastando vocês emocionalmente sem perceber." />
+
+  <meta name="description" content="Descubra o que está afastando vocês emocionalmente sem perceber.">
 
   <style>
     :root{
-      --verde:#005B14;
-      --verde-escuro:#003D0D;
-      --dourado:#C8A24A;
-      --dourado-claro:#F5E7B8;
-      --branco:#FFFFFF;
-      --fundo:#F8FAF8;
-      --texto:#1C1C1C;
-      --suave:#627066;
-      --linha:rgba(200,162,74,.35);
+      --green:#005B14;
+      --green-dark:#003D0D;
+      --gold:#C8A24A;
+      --gold-light:#F4E4B3;
+      --white:#FFFFFF;
+      --off:#F7FAF7;
+      --text:#1C1C1C;
+      --muted:#657166;
+      --line:rgba(200,162,74,.25);
+      --shadow:0 18px 40px rgba(0,0,0,.08);
     }
 
-    *{box-sizing:border-box}
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
 
     body{
-      margin:0;
       font-family:Arial, Helvetica, sans-serif;
-      background:var(--fundo);
-      color:var(--texto);
+      background:var(--off);
+      color:var(--text);
       line-height:1.6;
     }
 
-    img{max-width:100%;display:block}
-    a{text-decoration:none}
+    img{
+      max-width:100%;
+      display:block;
+    }
+
+    a{
+      text-decoration:none;
+    }
 
     .wrap{
-      max-width:1120px;
-      margin:0 auto;
+      max-width:1100px;
+      margin:auto;
       padding:0 20px;
     }
 
     .hero{
       background:
-        radial-gradient(circle at top right, rgba(200,162,74,.24), transparent 35%),
-        linear-gradient(135deg,var(--verde-escuro),var(--verde));
+      radial-gradient(circle at top right, rgba(200,162,74,.20), transparent 35%),
+      linear-gradient(135deg,var(--green-dark),var(--green));
       color:#fff;
       text-align:center;
-      padding:34px 0 76px;
+      padding:40px 0 80px;
     }
 
     .logo{
       max-width:520px;
-      margin:0 auto 44px;
+      margin:0 auto 40px;
       border-radius:8px;
     }
 
     .tag{
       display:inline-block;
-      border:1px solid var(--dourado);
-      color:var(--dourado-claro);
-      padding:8px 16px;
+      border:1px solid var(--gold);
+      color:var(--gold-light);
+      padding:8px 18px;
       border-radius:999px;
+      font-size:13px;
       font-weight:800;
-      font-size:14px;
       letter-spacing:.08em;
       text-transform:uppercase;
-      margin-bottom:20px;
+      margin-bottom:22px;
     }
 
     h1{
-      font-size:clamp(36px,6vw,68px);
+      font-size:clamp(38px,6vw,68px);
       line-height:1.05;
-      margin:0 auto 22px;
-      max-width:930px;
+      margin-bottom:22px;
     }
 
     .hero p{
-      max-width:790px;
-      margin:0 auto 34px;
-      font-size:clamp(18px,2.4vw,24px);
-      color:#eef7ef;
+      max-width:780px;
+      margin:auto;
+      font-size:clamp(18px,2vw,24px);
+      color:#EAF3EC;
+    }
+
+    section{
+      padding:70px 0;
+    }
+
+    .section-title{
+      text-align:center;
+      color:var(--green-dark);
+      font-size:clamp(30px,4vw,48px);
+      line-height:1.15;
+      margin-bottom:16px;
+    }
+
+    .section-sub{
+      text-align:center;
+      max-width:760px;
+      margin:0 auto 46px;
+      color:var(--muted);
+      font-size:19px;
+    }
+
+    .quiz-box{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:28px;
+      padding:34px;
+      margin-bottom:24px;
+      box-shadow:var(--shadow);
+    }
+
+    .quiz-box h3{
+      color:var(--green);
+      font-size:28px;
+      margin-bottom:22px;
+    }
+
+    .options{
+      display:grid;
+      gap:14px;
+    }
+
+    .option{
+      position:relative;
+    }
+
+    .option input{
+      display:none;
+    }
+
+    .option label{
+      display:flex;
+      align-items:flex-start;
+      gap:14px;
+      background:#FBFDFB;
+      border:2px solid rgba(0,91,20,.10);
+      padding:18px 18px;
+      border-radius:16px;
+      cursor:pointer;
+      transition:.25s ease;
+      font-weight:600;
+      color:#36433A;
+    }
+
+    .option label:hover{
+      border-color:var(--gold);
+      transform:translateY(-2px);
+    }
+
+    .circle{
+      width:22px;
+      height:22px;
+      border-radius:50%;
+      border:2px solid var(--gold);
+      flex:0 0 22px;
+      margin-top:2px;
+      position:relative;
+    }
+
+    .option input:checked + label{
+      background:linear-gradient(135deg,#fff,#FFF9E9);
+      border-color:var(--gold);
+      box-shadow:0 10px 22px rgba(200,162,74,.18);
+    }
+
+    .option input:checked + label .circle::after{
+      content:"";
+      width:10px;
+      height:10px;
+      background:var(--gold);
+      border-radius:50%;
+      position:absolute;
+      top:4px;
+      left:4px;
+    }
+
+    .cta{
+      text-align:center;
+      margin-top:50px;
     }
 
     .btn{
-      display:inline-block;
-      background:linear-gradient(135deg,var(--dourado),#E7C96F);
-      color:var(--verde-escuro);
-      padding:16px 28px;
-      border-radius:14px;
+      background:linear-gradient(135deg,var(--gold),#E7C96F);
+      color:var(--green-dark);
+      border:none;
+      padding:18px 34px;
+      border-radius:16px;
+      font-size:18px;
       font-weight:900;
-      box-shadow:0 14px 30px rgba(0,0,0,.22);
-      transition:.2s ease;
+      cursor:pointer;
+      transition:.25s ease;
+      box-shadow:0 14px 30px rgba(0,0,0,.15);
     }
 
     .btn:hover{
@@ -96,160 +208,51 @@
       filter:brightness(1.05);
     }
 
-    section{
-      padding:68px 0;
+    .btn:disabled{
+      opacity:.5;
+      cursor:not-allowed;
     }
 
-    .section-title{
-      text-align:center;
-      font-size:clamp(30px,4vw,46px);
-      color:var(--verde-escuro);
-      line-height:1.15;
-      margin:0 0 14px;
-    }
-
-    .section-sub{
-      max-width:760px;
-      margin:0 auto 42px;
-      text-align:center;
-      color:var(--suave);
-      font-size:19px;
-    }
-
-    .diagnostico{
-      display:grid;
-      gap:24px;
-    }
-
-    .box{
+    .result{
+      display:none;
+      margin-top:50px;
       background:#fff;
-      border:1px solid var(--linha);
-      border-radius:24px;
-      padding:30px;
-      box-shadow:0 16px 34px rgba(0,61,13,.06);
-    }
-
-    .box h3{
-      margin:0 0 18px;
-      color:var(--verde);
-      font-size:24px;
-    }
-
-    .opcoes{
-      display:grid;
-      gap:12px;
-    }
-
-    .opcao{
-      display:flex;
-      gap:12px;
-      align-items:flex-start;
-      background:#FBFDFB;
-      border:1px solid rgba(0,91,20,.12);
-      border-radius:14px;
-      padding:14px 16px;
-      color:#334238;
-      font-weight:600;
-    }
-
-    .bolinha{
-      width:20px;
-      height:20px;
-      border:2px solid var(--dourado);
-      border-radius:50%;
-      flex:0 0 20px;
-      margin-top:2px;
-    }
-
-    .dark{
-      background:var(--verde-escuro);
-      color:#fff;
-    }
-
-    .dark .section-title{color:#fff}
-    .dark .section-sub{color:#dbeadf}
-
-    .resultados{
-      display:grid;
-      gap:22px;
-    }
-
-    @media(min-width:860px){
-      .resultados{
-        grid-template-columns:repeat(2,1fr);
-      }
-    }
-
-    .resultado{
-      background:#fff;
-      color:var(--texto);
-      border:1px solid var(--linha);
-      border-top:5px solid var(--dourado);
-      border-radius:24px;
-      padding:30px;
-      box-shadow:0 16px 34px rgba(0,0,0,.08);
-    }
-
-    .resultado span{
-      color:var(--dourado);
-      font-weight:900;
-      text-transform:uppercase;
-      font-size:13px;
-      letter-spacing:.08em;
-    }
-
-    .resultado h3{
-      color:var(--verde-escuro);
-      font-size:25px;
-      line-height:1.2;
-      margin:8px 0 14px;
-    }
-
-    .resultado p{
-      color:var(--suave);
-      margin:0 0 12px;
-      font-size:17px;
-    }
-
-    .proximo{
-      margin-top:18px;
-      padding-top:18px;
-      border-top:1px solid var(--linha);
-    }
-
-    .proximo strong{
-      color:var(--verde);
-    }
-
-    .cta{
-      background:linear-gradient(135deg,var(--verde-escuro),var(--verde));
-      color:#fff;
       border-radius:28px;
-      padding:44px 28px;
-      text-align:center;
-      border:1px solid var(--dourado);
-      box-shadow:0 20px 44px rgba(0,61,13,.18);
+      padding:40px;
+      box-shadow:var(--shadow);
+      border-top:5px solid var(--gold);
     }
 
-    .cta h2{
-      font-size:clamp(30px,4vw,48px);
-      margin:0 0 14px;
+    .result h2{
+      color:var(--green-dark);
+      font-size:40px;
+      margin-bottom:18px;
       line-height:1.15;
     }
 
-    .cta p{
-      max-width:720px;
-      margin:0 auto 28px;
-      color:#eaf3ec;
-      font-size:19px;
+    .result p{
+      color:var(--muted);
+      margin-bottom:14px;
+      font-size:18px;
+    }
+
+    .next-step{
+      margin-top:24px;
+      padding-top:24px;
+      border-top:1px solid var(--line);
+    }
+
+    .next-step strong{
+      color:var(--green);
     }
 
     footer{
-      background:var(--verde-escuro);
+      background:var(--green-dark);
       color:#fff;
       text-align:center;
-      padding:26px 20px;
+      padding:28px 20px;
       font-size:14px;
+      margin-top:80px;
     }
 
     .whatsapp{
@@ -260,206 +263,405 @@
       height:62px;
       border-radius:50%;
       background:#25D366;
+      display:flex;
+      align-items:center;
+      justify-content:center;
       color:#fff;
-      display:grid;
-      place-items:center;
       font-size:30px;
-      box-shadow:0 12px 30px rgba(0,0,0,.25);
-      z-index:20;
+      box-shadow:0 12px 28px rgba(0,0,0,.25);
+      z-index:999;
     }
 
-    @media(max-width:640px){
-      .logo{max-width:92%;margin-bottom:34px}
-      section{padding:54px 0}
-      .box,.resultado{padding:24px}
+    @media(max-width:768px){
+
+      .hero{
+        padding:30px 0 60px;
+      }
+
+      .logo{
+        max-width:92%;
+      }
+
+      .quiz-box{
+        padding:24px;
+      }
+
+      .result{
+        padding:28px;
+      }
+
+      .result h2{
+        font-size:32px;
+      }
+
     }
   </style>
 </head>
 
 <body>
 
-  <main>
-    <section class="hero">
-      <div class="wrap">
-        <img src="logo.jpeg" alt="Logo Mentoria O Seu Lugar" class="logo">
+  <section class="hero">
+    <div class="wrap">
 
-        <span class="tag">Diagnóstico gratuito</span>
+      <img src="logo.jpeg" alt="Logo O Seu Lugar" class="logo">
 
-        <h1>O que está afastando vocês sem perceber?</h1>
+      <span class="tag">Diagnóstico gratuito</span>
 
-        <p>
-          Para homens e mulheres que sentem que o relacionamento mudou…
-          mas não conseguem explicar exatamente o porquê.
-        </p>
+      <h1>O que está afastando vocês sem perceber?</h1>
 
-        <a href="https://forms.gle/3kwdrZnUJCz7ohaK8" target="_blank" rel="noopener" class="btn">
+      <p>
+        Para homens e mulheres que sentem que o relacionamento mudou…
+        mas não conseguem explicar exatamente o porquê.
+      </p>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+
+      <h2 class="section-title">
+        Selecione todas as alternativas que representam o relacionamento de vocês hoje
+      </h2>
+
+      <p class="section-sub">
+        Quanto mais verdadeiro você for nas respostas,
+        mais preciso será o seu resultado emocional.
+      </p>
+
+      <!-- BLOCO 1 -->
+
+      <div class="quiz-box">
+
+        <h3>Como você sente sua relação atualmente?</h3>
+
+        <div class="options">
+
+          <div class="option">
+            <input type="checkbox" id="q1">
+            <label for="q1">
+              <span class="circle"></span>
+              Parece que estamos vivendo mais como rotina do que como casal
+            </label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="q2">
+            <label for="q2">
+              <span class="circle"></span>
+              Falta diálogo verdadeiro entre nós
+            </label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="q3">
+            <label for="q3">
+              <span class="circle"></span>
+              Sinto que estamos emocionalmente distantes
+            </label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="q4">
+            <label for="q4">
+              <span class="circle"></span>
+              Quase não temos momentos leves juntos
+            </label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="q5">
+            <label for="q5">
+              <span class="circle"></span>
+              Muitas conversas acabam em silêncio ou desgaste
+            </label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="q6">
+            <label for="q6">
+              <span class="circle"></span>
+              Sinto falta de conexão e presença
+            </label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="q7">
+            <label for="q7">
+              <span class="circle"></span>
+              Parece que cada um vive no próprio mundo
+            </label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="q8">
+            <label for="q8">
+              <span class="circle"></span>
+              O relacionamento esfriou aos poucos
+            </label>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- BLOCO 2 -->
+
+      <div class="quiz-box">
+
+        <h3>O que mais tem pesado no relacionamento?</h3>
+
+        <div class="options">
+
+          <div class="option">
+            <input type="checkbox" id="q9">
+            <label for="q9">
+              <span class="circle"></span>
+              Falta de diálogo
+            </label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="q10">
+            <label for="q10">
+              <span class="circle"></span>
+              Excesso de rotina
+            </label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="q11">
+            <label for="q11">
+              <span class="circle"></span>
+              Sobrecarga emocional
+            </label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="q12">
+            <label for="q12">
+              <span class="circle"></span>
+              Distância emocional
+            </label>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- BLOCO 3 -->
+
+      <div class="quiz-box">
+
+        <h3>O que você gostaria de voltar a sentir?</h3>
+
+        <div class="options">
+
+          <div class="option">
+            <input type="checkbox" id="q13">
+            <label for="q13">
+              <span class="circle"></span>
+              Leveza
+            </label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="q14">
+            <label for="q14">
+              <span class="circle"></span>
+              Conexão
+            </label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="q15">
+            <label for="q15">
+              <span class="circle"></span>
+              Presença
+            </label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="q16">
+            <label for="q16">
+              <span class="circle"></span>
+              Companheirismo
+            </label>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- BOTÃO -->
+
+      <div class="cta">
+
+        <button class="btn" id="resultBtn">
           Ver meu resultado
-        </a>
+        </button>
+
       </div>
-    </section>
 
-    <section>
-      <div class="wrap">
-        <h2 class="section-title">Marque mentalmente o que mais representa seu relacionamento hoje</h2>
-        <p class="section-sub">
-          Este diagnóstico foi criado para ajudar você a perceber sinais emocionais que muitas vezes passam despercebidos.
-        </p>
+      <!-- RESULTADO -->
 
-        <div class="diagnostico">
-          <div class="box">
-            <h3>Como você sente sua relação atualmente?</h3>
+      <div class="result" id="resultBox">
 
-            <div class="opcoes">
-              <div class="opcao"><span class="bolinha"></span>Parece que estamos vivendo mais como rotina do que como casal</div>
-              <div class="opcao"><span class="bolinha"></span>Falta diálogo verdadeiro entre nós</div>
-              <div class="opcao"><span class="bolinha"></span>Sinto que estamos emocionalmente distantes</div>
-              <div class="opcao"><span class="bolinha"></span>Quase não temos momentos leves juntos</div>
-              <div class="opcao"><span class="bolinha"></span>Muitas conversas acabam em silêncio ou desgaste</div>
-              <div class="opcao"><span class="bolinha"></span>Sinto falta de conexão e presença</div>
-              <div class="opcao"><span class="bolinha"></span>Parece que cada um vive no próprio mundo</div>
-              <div class="opcao"><span class="bolinha"></span>O relacionamento esfriou aos poucos</div>
-              <div class="opcao"><span class="bolinha"></span>Às vezes me sinto sozinho(a) mesmo acompanhado(a)</div>
-              <div class="opcao"><span class="bolinha"></span>Estamos juntos… mas desconectados</div>
-            </div>
-          </div>
+        <h2 id="resultTitle"></h2>
 
-          <div class="box">
-            <h3>O que mais tem pesado no relacionamento?</h3>
+        <div id="resultText"></div>
 
-            <div class="opcoes">
-              <div class="opcao"><span class="bolinha"></span>Falta de diálogo</div>
-              <div class="opcao"><span class="bolinha"></span>Excesso de rotina</div>
-              <div class="opcao"><span class="bolinha"></span>Sobrecarga emocional</div>
-              <div class="opcao"><span class="bolinha"></span>Distância emocional</div>
-              <div class="opcao"><span class="bolinha"></span>Falta de parceria</div>
-              <div class="opcao"><span class="bolinha"></span>Sensação de desgaste</div>
-            </div>
-          </div>
-
-          <div class="box">
-            <h3>O que você gostaria de voltar a sentir?</h3>
-
-            <div class="opcoes">
-              <div class="opcao"><span class="bolinha"></span>Leveza</div>
-              <div class="opcao"><span class="bolinha"></span>Conexão</div>
-              <div class="opcao"><span class="bolinha"></span>Presença</div>
-              <div class="opcao"><span class="bolinha"></span>Companheirismo</div>
-              <div class="opcao"><span class="bolinha"></span>Admiração</div>
-              <div class="opcao"><span class="bolinha"></span>Vontade de viver o relacionamento de verdade novamente</div>
-            </div>
-          </div>
-        </div>
       </div>
-    </section>
 
-    <section>
-      <div class="wrap">
-        <div class="cta">
-          <h2>Antes de acessar seu resultado</h2>
-          <p>
-            Para receber seu resultado completo, clique no botão abaixo e preencha apenas seu nome e WhatsApp no formulário oficial.
-          </p>
-
-          <a href="https://forms.gle/3kwdrZnUJCz7ohaK8" target="_blank" rel="noopener" class="btn">
-            Ver meu resultado
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section class="dark">
-      <div class="wrap">
-        <h2 class="section-title">Possíveis resultados do diagnóstico</h2>
-        <p class="section-sub">
-          Após responder, você poderá identificar qual dinâmica emocional está mais presente no seu relacionamento hoje.
-        </p>
-
-        <div class="resultados">
-          <div class="resultado">
-            <span>Resultado 1</span>
-            <h3>O relacionamento entrou no automático</h3>
-
-            <p>Vocês continuam juntos… mas a conexão emocional foi ficando para depois.</p>
-            <p>A rotina começou a ocupar o espaço da presença, das conversas e da leveza.</p>
-            <p>E aos poucos, o relacionamento começou a sobreviver… em vez de ser vivido.</p>
-
-            <div class="proximo">
-              <p><strong>Próximo passo:</strong> Na Sessão O Seu Lugar®️, nós vamos identificar o que está afastando vocês emocionalmente e como reconstruir mais conexão e presença dentro da relação.</p>
-            </div>
-          </div>
-
-          <div class="resultado">
-            <span>Resultado 2</span>
-            <h3>O peso emocional está desgastando a relação</h3>
-
-            <p>Talvez um de vocês esteja carregando mais do que consegue sustentar.</p>
-            <p>Quando o emocional fica pesado demais, o casal começa a viver em tensão, cobrança ou silêncio.</p>
-            <p>E o relacionamento vai perdendo a leveza.</p>
-
-            <div class="proximo">
-              <p><strong>Próximo passo:</strong> Na Sessão O Seu Lugar®️, nós vamos olhar para o que está gerando desgaste emocional dentro da relação e o que precisa ser reorganizado.</p>
-            </div>
-          </div>
-
-          <div class="resultado">
-            <span>Resultado 3</span>
-            <h3>Falta presença emocional no relacionamento</h3>
-
-            <p>Nem sempre o problema é falta de amor.</p>
-            <p>Às vezes, o casal apenas deixou de se enxergar emocionalmente.</p>
-            <p>Falta conversa, conexão, troca e presença verdadeira.</p>
-            <p>E isso cria distância mesmo estando juntos.</p>
-
-            <div class="proximo">
-              <p><strong>Próximo passo:</strong> Na Sessão O Seu Lugar®️, nós vamos olhar para a dinâmica emocional do relacionamento e entender o que está impedindo vocês de se conectarem de verdade.</p>
-            </div>
-          </div>
-
-          <div class="resultado">
-            <span>Resultado 4</span>
-            <h3>Vocês precisam voltar a ocupar o lugar de casal</h3>
-
-            <p>Talvez a relação tenha virado apenas rotina, responsabilidade e tarefas.</p>
-            <p>Mas relacionamento não sobrevive só de convivência.</p>
-            <p>Ele precisa de presença, construção e conexão emocional.</p>
-
-            <div class="proximo">
-              <p><strong>Próximo passo:</strong> Na Sessão O Seu Lugar®️, nós vamos entender onde vocês deixaram de ocupar o lugar de casal e como começar a reconstruir essa relação.</p>
-            </div>
-          </div>
-        </div>
-
-        <div style="text-align:center;margin-top:38px">
-          <a href="https://forms.gle/3kwdrZnUJCz7ohaK8" target="_blank" rel="noopener" class="btn">
-            Ver meu resultado completo
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <div class="wrap">
-        <div class="cta">
-          <h2>Quer entender o que está acontecendo na relação?</h2>
-          <p>
-            Responda ao diagnóstico gratuito e receba o direcionamento inicial para o seu momento atual.
-          </p>
-
-          <a href="https://forms.gle/3kwdrZnUJCz7ohaK8" target="_blank" rel="noopener" class="btn">
-            Ver meu resultado
-          </a>
-        </div>
-      </div>
-    </section>
-  </main>
+    </div>
+  </section>
 
   <footer>
-    © Mentoria O Seu Lugar® — Todos os direitos reservados.
+    © O Seu Lugar® — Todos os direitos reservados.
   </footer>
 
-  <a class="whatsapp" href="https://wa.me/5549998110445?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20o%20Diagn%C3%B3stico%20O%20Seu%20Lugar" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
-    ☎
+  <a class="whatsapp"
+     href="https://wa.me/5549998110445"
+     target="_blank">
+     ☎
   </a>
+
+  <script>
+
+    const resultBtn = document.getElementById('resultBtn');
+
+    const resultBox = document.getElementById('resultBox');
+
+    const resultTitle = document.getElementById('resultTitle');
+
+    const resultText = document.getElementById('resultText');
+
+    resultBtn.addEventListener('click', () => {
+
+      window.open(
+        'https://forms.gle/3kwdrZnUJCz7ohaK8',
+        '_blank'
+      );
+
+      setTimeout(() => {
+
+        const checked = document.querySelectorAll('input[type="checkbox"]:checked').length;
+
+        let title = '';
+        let text = '';
+
+        if(checked <= 3){
+
+          title = 'O relacionamento entrou no automático';
+
+          text = `
+            <p>
+              Vocês continuam juntos…
+              mas a conexão emocional foi ficando para depois.
+            </p>
+
+            <p>
+              A rotina começou a ocupar o espaço da presença,
+              das conversas e da leveza.
+            </p>
+
+            <div class="next-step">
+              <p>
+                <strong>Próximo passo:</strong>
+                Na Sessão O Seu Lugar®,
+                nós vamos identificar o que está afastando vocês emocionalmente.
+              </p>
+            </div>
+          `;
+
+        }
+
+        else if(checked <= 6){
+
+          title = 'O peso emocional está desgastando a relação';
+
+          text = `
+            <p>
+              Talvez um de vocês esteja carregando mais do que consegue sustentar.
+            </p>
+
+            <p>
+              O relacionamento começou a viver tensão, cobrança ou silêncio.
+            </p>
+
+            <div class="next-step">
+              <p>
+                <strong>Próximo passo:</strong>
+                Vamos olhar para o que está gerando desgaste emocional.
+              </p>
+            </div>
+          `;
+
+        }
+
+        else if(checked <= 10){
+
+          title = 'Falta presença emocional no relacionamento';
+
+          text = `
+            <p>
+              Nem sempre o problema é falta de amor.
+            </p>
+
+            <p>
+              Às vezes o casal apenas deixou de se enxergar emocionalmente.
+            </p>
+
+            <div class="next-step">
+              <p>
+                <strong>Próximo passo:</strong>
+                Vamos entender o que está impedindo vocês de se conectarem.
+              </p>
+            </div>
+          `;
+
+        }
+
+        else{
+
+          title = 'Vocês precisam voltar a ocupar o lugar de casal';
+
+          text = `
+            <p>
+              Talvez a relação tenha virado apenas rotina,
+              responsabilidades e tarefas.
+            </p>
+
+            <p>
+              Mas relacionamento precisa de presença,
+              construção e conexão emocional.
+            </p>
+
+            <div class="next-step">
+              <p>
+                <strong>Próximo passo:</strong>
+                Vamos reconstruir a conexão emocional de vocês.
+              </p>
+            </div>
+          `;
+
+        }
+
+        resultTitle.innerHTML = title;
+
+        resultText.innerHTML = text;
+
+        resultBox.style.display = 'block';
+
+        resultBox.scrollIntoView({
+          behavior:'smooth'
+        });
+
+      }, 1500);
+
+    });
+
+  </script>
 
 </body>
 </html>
