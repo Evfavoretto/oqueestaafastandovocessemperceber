@@ -1,32 +1,26 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Diagnóstico Gratuito | O Seu Lugar®</title>
-
-  <meta name="description" content="Descubra o que está afastando vocês emocionalmente sem perceber.">
+  <meta name="description" content="Descubra o que está afastando vocês emocionalmente sem perceber." />
 
   <style>
     :root{
       --green:#005B14;
       --green-dark:#003D0D;
       --gold:#C8A24A;
-      --gold-light:#F4E4B3;
+      --gold-light:#F5E7B8;
       --white:#FFFFFF;
       --off:#F7FAF7;
       --text:#1C1C1C;
       --muted:#657166;
-      --line:rgba(200,162,74,.25);
+      --line:rgba(200,162,74,.28);
       --shadow:0 18px 40px rgba(0,0,0,.08);
     }
 
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-    }
+    *{margin:0;padding:0;box-sizing:border-box}
 
     body{
       font-family:Arial, Helvetica, sans-serif;
@@ -35,32 +29,27 @@
       line-height:1.6;
     }
 
-    img{
-      max-width:100%;
-      display:block;
-    }
-
-    a{
-      text-decoration:none;
-    }
+    img{max-width:100%;display:block}
+    a{text-decoration:none}
 
     .wrap{
       max-width:1100px;
-      margin:auto;
+      margin:0 auto;
       padding:0 20px;
     }
 
     .hero{
       background:
-      radial-gradient(circle at top right, rgba(200,162,74,.20), transparent 35%),
-      linear-gradient(135deg,var(--green-dark),var(--green));
+        radial-gradient(circle at top right, rgba(200,162,74,.22), transparent 36%),
+        linear-gradient(135deg,var(--green-dark),var(--green));
       color:#fff;
       text-align:center;
-      padding:40px 0 80px;
+      padding:40px 0 78px;
     }
 
     .logo{
       max-width:520px;
+      width:100%;
       margin:0 auto 40px;
       border-radius:8px;
     }
@@ -85,15 +74,13 @@
     }
 
     .hero p{
-      max-width:780px;
-      margin:auto;
+      max-width:790px;
+      margin:0 auto;
       font-size:clamp(18px,2vw,24px);
       color:#EAF3EC;
     }
 
-    section{
-      padding:70px 0;
-    }
+    section{padding:70px 0}
 
     .section-title{
       text-align:center;
@@ -111,7 +98,9 @@
       font-size:19px;
     }
 
-    .quiz-box{
+    .quiz-box,
+    .lead-box,
+    .result-box{
       background:#fff;
       border:1px solid var(--line);
       border-radius:28px;
@@ -120,7 +109,8 @@
       box-shadow:var(--shadow);
     }
 
-    .quiz-box h3{
+    .quiz-box h3,
+    .lead-box h3{
       color:var(--green);
       font-size:28px;
       margin-bottom:22px;
@@ -129,10 +119,6 @@
     .options{
       display:grid;
       gap:14px;
-    }
-
-    .option{
-      position:relative;
     }
 
     .option input{
@@ -145,7 +131,7 @@
       gap:14px;
       background:#FBFDFB;
       border:2px solid rgba(0,91,20,.10);
-      padding:18px 18px;
+      padding:18px;
       border-radius:16px;
       cursor:pointer;
       transition:.25s ease;
@@ -187,10 +173,11 @@
 
     .cta{
       text-align:center;
-      margin-top:50px;
+      margin-top:42px;
     }
 
     .btn{
+      display:inline-block;
       background:linear-gradient(135deg,var(--gold),#E7C96F);
       color:var(--green-dark);
       border:none;
@@ -208,37 +195,81 @@
       filter:brightness(1.05);
     }
 
-    .btn:disabled{
-      opacity:.5;
-      cursor:not-allowed;
+    .alert{
+      display:none;
+      margin-top:18px;
+      color:#9A3412;
+      font-weight:700;
+      text-align:center;
     }
 
-    .result{
+    .lead-box{
       display:none;
-      margin-top:50px;
-      background:#fff;
-      border-radius:28px;
-      padding:40px;
-      box-shadow:var(--shadow);
+      margin-top:44px;
       border-top:5px solid var(--gold);
     }
 
-    .result h2{
-      color:var(--green-dark);
-      font-size:40px;
-      margin-bottom:18px;
-      line-height:1.15;
+    .form-grid{
+      display:grid;
+      gap:16px;
     }
 
-    .result p{
+    .field label{
+      display:block;
+      font-weight:800;
+      color:var(--green-dark);
+      margin-bottom:8px;
+    }
+
+    .field input{
+      width:100%;
+      padding:16px;
+      border-radius:14px;
+      border:2px solid rgba(0,91,20,.14);
+      font-size:17px;
+      outline:none;
+    }
+
+    .field input:focus{
+      border-color:var(--gold);
+      box-shadow:0 0 0 4px rgba(200,162,74,.16);
+    }
+
+    .result-box{
+      display:none;
+      margin-top:44px;
+      border-top:6px solid var(--gold);
+    }
+
+    .result-tag{
+      display:inline-block;
+      background:#FFF7E1;
+      color:var(--gold);
+      padding:8px 16px;
+      border-radius:999px;
+      font-weight:900;
+      font-size:13px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      margin-bottom:18px;
+    }
+
+    .result-box h2{
+      color:var(--green-dark);
+      font-size:clamp(34px,5vw,58px);
+      line-height:1.08;
+      margin-bottom:22px;
+    }
+
+    .result-box p{
       color:var(--muted);
-      margin-bottom:14px;
-      font-size:18px;
+      font-size:20px;
+      margin-bottom:16px;
     }
 
     .next-step{
-      margin-top:24px;
-      padding-top:24px;
+      margin-top:30px;
+      padding-top:30px;
       border-top:1px solid var(--line);
     }
 
@@ -246,13 +277,15 @@
       color:var(--green);
     }
 
+    .hidden{display:none!important}
+
     footer{
       background:var(--green-dark);
       color:#fff;
       text-align:center;
       padding:28px 20px;
       font-size:14px;
-      margin-top:80px;
+      margin-top:70px;
     }
 
     .whatsapp{
@@ -273,27 +306,10 @@
     }
 
     @media(max-width:768px){
-
-      .hero{
-        padding:30px 0 60px;
-      }
-
-      .logo{
-        max-width:92%;
-      }
-
-      .quiz-box{
-        padding:24px;
-      }
-
-      .result{
-        padding:28px;
-      }
-
-      .result h2{
-        font-size:32px;
-      }
-
+      .hero{padding:30px 0 60px}
+      .logo{max-width:92%}
+      section{padding:54px 0}
+      .quiz-box,.lead-box,.result-box{padding:24px}
     }
   </style>
 </head>
@@ -302,7 +318,6 @@
 
   <section class="hero">
     <div class="wrap">
-
       <img src="logo.jpeg" alt="Logo O Seu Lugar" class="logo">
 
       <span class="tag">Diagnóstico gratuito</span>
@@ -313,11 +328,10 @@
         Para homens e mulheres que sentem que o relacionamento mudou…
         mas não conseguem explicar exatamente o porquê.
       </p>
-
     </div>
   </section>
 
-  <section>
+  <section id="diagnostico">
     <div class="wrap">
 
       <h2 class="section-title">
@@ -325,192 +339,95 @@
       </h2>
 
       <p class="section-sub">
-        Quanto mais verdadeiro você for nas respostas,
-        mais preciso será o seu resultado emocional.
+        Clique nas opções que você percebe que estão acontecendo na relação.
+        Quanto mais verdadeiro você for, mais preciso será o resultado.
       </p>
 
-      <!-- BLOCO 1 -->
+      <div id="quizArea">
 
-      <div class="quiz-box">
+        <div class="quiz-box">
+          <h3>Como você sente sua relação atualmente?</h3>
 
-        <h3>Como você sente sua relação atualmente?</h3>
-
-        <div class="options">
-
-          <div class="option">
-            <input type="checkbox" id="q1">
-            <label for="q1">
-              <span class="circle"></span>
-              Parece que estamos vivendo mais como rotina do que como casal
-            </label>
+          <div class="options">
+            <div class="option"><input type="checkbox" id="q1" data-r="1"><label for="q1"><span class="circle"></span>Parece que estamos vivendo mais como rotina do que como casal</label></div>
+            <div class="option"><input type="checkbox" id="q2" data-r="3"><label for="q2"><span class="circle"></span>Falta diálogo verdadeiro entre nós</label></div>
+            <div class="option"><input type="checkbox" id="q3" data-r="3"><label for="q3"><span class="circle"></span>Sinto que estamos emocionalmente distantes</label></div>
+            <div class="option"><input type="checkbox" id="q4" data-r="1"><label for="q4"><span class="circle"></span>Quase não temos momentos leves juntos</label></div>
+            <div class="option"><input type="checkbox" id="q5" data-r="2"><label for="q5"><span class="circle"></span>Muitas conversas acabam em silêncio ou desgaste</label></div>
+            <div class="option"><input type="checkbox" id="q6" data-r="3"><label for="q6"><span class="circle"></span>Sinto falta de conexão e presença</label></div>
+            <div class="option"><input type="checkbox" id="q7" data-r="3"><label for="q7"><span class="circle"></span>Parece que cada um vive no próprio mundo</label></div>
+            <div class="option"><input type="checkbox" id="q8" data-r="1"><label for="q8"><span class="circle"></span>O relacionamento esfriou aos poucos</label></div>
+            <div class="option"><input type="checkbox" id="q9" data-r="2"><label for="q9"><span class="circle"></span>Às vezes me sinto sozinho(a) mesmo acompanhado(a)</label></div>
+            <div class="option"><input type="checkbox" id="q10" data-r="4"><label for="q10"><span class="circle"></span>Estamos juntos… mas desconectados</label></div>
           </div>
+        </div>
 
-          <div class="option">
-            <input type="checkbox" id="q2">
-            <label for="q2">
-              <span class="circle"></span>
-              Falta diálogo verdadeiro entre nós
-            </label>
+        <div class="quiz-box">
+          <h3>O que mais tem pesado no relacionamento?</h3>
+
+          <div class="options">
+            <div class="option"><input type="checkbox" id="q11" data-r="3"><label for="q11"><span class="circle"></span>Falta de diálogo</label></div>
+            <div class="option"><input type="checkbox" id="q12" data-r="1"><label for="q12"><span class="circle"></span>Excesso de rotina</label></div>
+            <div class="option"><input type="checkbox" id="q13" data-r="2"><label for="q13"><span class="circle"></span>Sobrecarga emocional</label></div>
+            <div class="option"><input type="checkbox" id="q14" data-r="3"><label for="q14"><span class="circle"></span>Distância emocional</label></div>
+            <div class="option"><input type="checkbox" id="q15" data-r="4"><label for="q15"><span class="circle"></span>Falta de parceria</label></div>
+            <div class="option"><input type="checkbox" id="q16" data-r="2"><label for="q16"><span class="circle"></span>Sensação de desgaste</label></div>
           </div>
+        </div>
 
-          <div class="option">
-            <input type="checkbox" id="q3">
-            <label for="q3">
-              <span class="circle"></span>
-              Sinto que estamos emocionalmente distantes
-            </label>
+        <div class="quiz-box">
+          <h3>O que você gostaria de voltar a sentir?</h3>
+
+          <div class="options">
+            <div class="option"><input type="checkbox" id="q17" data-r="2"><label for="q17"><span class="circle"></span>Leveza</label></div>
+            <div class="option"><input type="checkbox" id="q18" data-r="3"><label for="q18"><span class="circle"></span>Conexão</label></div>
+            <div class="option"><input type="checkbox" id="q19" data-r="3"><label for="q19"><span class="circle"></span>Presença</label></div>
+            <div class="option"><input type="checkbox" id="q20" data-r="4"><label for="q20"><span class="circle"></span>Companheirismo</label></div>
+            <div class="option"><input type="checkbox" id="q21" data-r="4"><label for="q21"><span class="circle"></span>Admiração</label></div>
+            <div class="option"><input type="checkbox" id="q22" data-r="4"><label for="q22"><span class="circle"></span>Vontade de viver o relacionamento de verdade novamente</label></div>
           </div>
+        </div>
 
-          <div class="option">
-            <input type="checkbox" id="q4">
-            <label for="q4">
-              <span class="circle"></span>
-              Quase não temos momentos leves juntos
-            </label>
-          </div>
-
-          <div class="option">
-            <input type="checkbox" id="q5">
-            <label for="q5">
-              <span class="circle"></span>
-              Muitas conversas acabam em silêncio ou desgaste
-            </label>
-          </div>
-
-          <div class="option">
-            <input type="checkbox" id="q6">
-            <label for="q6">
-              <span class="circle"></span>
-              Sinto falta de conexão e presença
-            </label>
-          </div>
-
-          <div class="option">
-            <input type="checkbox" id="q7">
-            <label for="q7">
-              <span class="circle"></span>
-              Parece que cada um vive no próprio mundo
-            </label>
-          </div>
-
-          <div class="option">
-            <input type="checkbox" id="q8">
-            <label for="q8">
-              <span class="circle"></span>
-              O relacionamento esfriou aos poucos
-            </label>
-          </div>
-
+        <div class="cta">
+          <button class="btn" id="showFormBtn">Ver meu resultado</button>
+          <div class="alert" id="quizAlert">Selecione pelo menos uma alternativa para continuar.</div>
         </div>
 
       </div>
 
-      <!-- BLOCO 2 -->
+      <div class="lead-box" id="leadBox">
+        <h3>Antes de acessar seu resultado</h3>
+        <p style="color:var(--muted);font-size:18px;margin-bottom:24px;">
+          Preencha seus dados abaixo para receber o resultado completo do seu diagnóstico.
+        </p>
 
-      <div class="quiz-box">
+        <form id="leadForm">
+          <div class="form-grid">
+            <div class="field">
+              <label for="nome">Nome</label>
+              <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required>
+            </div>
 
-        <h3>O que mais tem pesado no relacionamento?</h3>
-
-        <div class="options">
-
-          <div class="option">
-            <input type="checkbox" id="q9">
-            <label for="q9">
-              <span class="circle"></span>
-              Falta de diálogo
-            </label>
+            <div class="field">
+              <label for="whats">WhatsApp</label>
+              <input type="tel" id="whats" name="whats" placeholder="Digite seu WhatsApp" required>
+            </div>
           </div>
 
-          <div class="option">
-            <input type="checkbox" id="q10">
-            <label for="q10">
-              <span class="circle"></span>
-              Excesso de rotina
-            </label>
+          <div class="cta">
+            <button class="btn" type="submit">Receber meu resultado</button>
           </div>
-
-          <div class="option">
-            <input type="checkbox" id="q11">
-            <label for="q11">
-              <span class="circle"></span>
-              Sobrecarga emocional
-            </label>
-          </div>
-
-          <div class="option">
-            <input type="checkbox" id="q12">
-            <label for="q12">
-              <span class="circle"></span>
-              Distância emocional
-            </label>
-          </div>
-
-        </div>
-
+        </form>
       </div>
 
-      <!-- BLOCO 3 -->
-
-      <div class="quiz-box">
-
-        <h3>O que você gostaria de voltar a sentir?</h3>
-
-        <div class="options">
-
-          <div class="option">
-            <input type="checkbox" id="q13">
-            <label for="q13">
-              <span class="circle"></span>
-              Leveza
-            </label>
-          </div>
-
-          <div class="option">
-            <input type="checkbox" id="q14">
-            <label for="q14">
-              <span class="circle"></span>
-              Conexão
-            </label>
-          </div>
-
-          <div class="option">
-            <input type="checkbox" id="q15">
-            <label for="q15">
-              <span class="circle"></span>
-              Presença
-            </label>
-          </div>
-
-          <div class="option">
-            <input type="checkbox" id="q16">
-            <label for="q16">
-              <span class="circle"></span>
-              Companheirismo
-            </label>
-          </div>
-
-        </div>
-
-      </div>
-
-      <!-- BOTÃO -->
-
-      <div class="cta">
-
-        <button class="btn" id="resultBtn">
-          Ver meu resultado
-        </button>
-
-      </div>
-
-      <!-- RESULTADO -->
-
-      <div class="result" id="resultBox">
-
+      <div class="result-box" id="resultBox">
+        <span class="result-tag">Seu resultado</span>
         <h2 id="resultTitle"></h2>
-
         <div id="resultText"></div>
 
+        <a class="btn" id="whatsResultBtn" href="https://wa.me/5549998110445" target="_blank" rel="noopener">
+          Agendar minha sessão
+        </a>
       </div>
 
     </div>
@@ -520,147 +437,138 @@
     © O Seu Lugar® — Todos os direitos reservados.
   </footer>
 
-  <a class="whatsapp"
-     href="https://wa.me/5549998110445"
-     target="_blank">
-     ☎
-  </a>
+  <a class="whatsapp" href="https://wa.me/5549998110445" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">☎</a>
 
   <script>
-
-    const resultBtn = document.getElementById('resultBtn');
-
+    const showFormBtn = document.getElementById('showFormBtn');
+    const quizAlert = document.getElementById('quizAlert');
+    const quizArea = document.getElementById('quizArea');
+    const leadBox = document.getElementById('leadBox');
+    const leadForm = document.getElementById('leadForm');
     const resultBox = document.getElementById('resultBox');
-
     const resultTitle = document.getElementById('resultTitle');
-
     const resultText = document.getElementById('resultText');
+    const whatsResultBtn = document.getElementById('whatsResultBtn');
 
-    resultBtn.addEventListener('click', () => {
+    let resultadoFinal = 'resultado1';
 
-      window.open(
-        'https://forms.gle/3kwdrZnUJCz7ohaK8',
-        '_blank'
-      );
+    const resultados = {
+      resultado1: {
+        titulo: 'O relacionamento entrou no automático',
+        texto: `
+          <p>Vocês continuam juntos… mas a conexão emocional foi ficando para depois.</p>
+          <p>A rotina começou a ocupar o espaço da presença, das conversas e da leveza.</p>
+          <p>E aos poucos, o relacionamento começou a sobreviver… em vez de ser vivido.</p>
+          <div class="next-step">
+            <p><strong>Próximo passo:</strong> Na Sessão O Seu Lugar®️, nós vamos identificar o que está afastando vocês emocionalmente e como reconstruir mais conexão e presença dentro da relação.</p>
+          </div>
+        `
+      },
 
-      setTimeout(() => {
+      resultado2: {
+        titulo: 'O peso emocional está desgastando a relação',
+        texto: `
+          <p>Talvez um de vocês esteja carregando mais do que consegue sustentar.</p>
+          <p>Quando o emocional fica pesado demais, o casal começa a viver em tensão, cobrança ou silêncio.</p>
+          <p>E o relacionamento vai perdendo a leveza.</p>
+          <div class="next-step">
+            <p><strong>Próximo passo:</strong> Na Sessão O Seu Lugar®️, nós vamos olhar para o que está gerando desgaste emocional dentro da relação e o que precisa ser reorganizado.</p>
+          </div>
+        `
+      },
 
-        const checked = document.querySelectorAll('input[type="checkbox"]:checked').length;
+      resultado3: {
+        titulo: 'Falta presença emocional no relacionamento',
+        texto: `
+          <p>Nem sempre o problema é falta de amor.</p>
+          <p>Às vezes, o casal apenas deixou de se enxergar emocionalmente.</p>
+          <p>Falta conversa, conexão, troca e presença verdadeira.</p>
+          <p>E isso cria distância mesmo estando juntos.</p>
+          <div class="next-step">
+            <p><strong>Próximo passo:</strong> Na Sessão O Seu Lugar®️, nós vamos olhar para a dinâmica emocional do relacionamento e entender o que está impedindo vocês de se conectarem de verdade.</p>
+          </div>
+        `
+      },
 
-        let title = '';
-        let text = '';
+      resultado4: {
+        titulo: 'Vocês precisam voltar a ocupar o lugar de casal',
+        texto: `
+          <p>Talvez a relação tenha virado apenas rotina, responsabilidade e tarefas.</p>
+          <p>Mas relacionamento não sobrevive só de convivência.</p>
+          <p>Ele precisa de presença, construção e conexão emocional.</p>
+          <div class="next-step">
+            <p><strong>Próximo passo:</strong> Na Sessão O Seu Lugar®️, nós vamos entender onde vocês deixaram de ocupar o lugar de casal e como começar a reconstruir essa relação.</p>
+          </div>
+        `
+      }
+    };
 
-        if(checked <= 3){
+    function calcularResultado(){
+      const checks = document.querySelectorAll('input[type="checkbox"]:checked');
 
-          title = 'O relacionamento entrou no automático';
+      const pontos = {
+        resultado1: 0,
+        resultado2: 0,
+        resultado3: 0,
+        resultado4: 0
+      };
 
-          text = `
-            <p>
-              Vocês continuam juntos…
-              mas a conexão emocional foi ficando para depois.
-            </p>
+      checks.forEach(item => {
+        const r = item.getAttribute('data-r');
+        pontos['resultado' + r]++;
+      });
 
-            <p>
-              A rotina começou a ocupar o espaço da presença,
-              das conversas e da leveza.
-            </p>
+      let maior = 'resultado1';
 
-            <div class="next-step">
-              <p>
-                <strong>Próximo passo:</strong>
-                Na Sessão O Seu Lugar®,
-                nós vamos identificar o que está afastando vocês emocionalmente.
-              </p>
-            </div>
-          `;
-
+      Object.keys(pontos).forEach(key => {
+        if(pontos[key] > pontos[maior]){
+          maior = key;
         }
+      });
 
-        else if(checked <= 6){
+      resultadoFinal = maior;
+    }
 
-          title = 'O peso emocional está desgastando a relação';
+    showFormBtn.addEventListener('click', () => {
+      const total = document.querySelectorAll('input[type="checkbox"]:checked').length;
 
-          text = `
-            <p>
-              Talvez um de vocês esteja carregando mais do que consegue sustentar.
-            </p>
+      if(total === 0){
+        quizAlert.style.display = 'block';
+        return;
+      }
 
-            <p>
-              O relacionamento começou a viver tensão, cobrança ou silêncio.
-            </p>
+      quizAlert.style.display = 'none';
+      calcularResultado();
 
-            <div class="next-step">
-              <p>
-                <strong>Próximo passo:</strong>
-                Vamos olhar para o que está gerando desgaste emocional.
-              </p>
-            </div>
-          `;
-
-        }
-
-        else if(checked <= 10){
-
-          title = 'Falta presença emocional no relacionamento';
-
-          text = `
-            <p>
-              Nem sempre o problema é falta de amor.
-            </p>
-
-            <p>
-              Às vezes o casal apenas deixou de se enxergar emocionalmente.
-            </p>
-
-            <div class="next-step">
-              <p>
-                <strong>Próximo passo:</strong>
-                Vamos entender o que está impedindo vocês de se conectarem.
-              </p>
-            </div>
-          `;
-
-        }
-
-        else{
-
-          title = 'Vocês precisam voltar a ocupar o lugar de casal';
-
-          text = `
-            <p>
-              Talvez a relação tenha virado apenas rotina,
-              responsabilidades e tarefas.
-            </p>
-
-            <p>
-              Mas relacionamento precisa de presença,
-              construção e conexão emocional.
-            </p>
-
-            <div class="next-step">
-              <p>
-                <strong>Próximo passo:</strong>
-                Vamos reconstruir a conexão emocional de vocês.
-              </p>
-            </div>
-          `;
-
-        }
-
-        resultTitle.innerHTML = title;
-
-        resultText.innerHTML = text;
-
-        resultBox.style.display = 'block';
-
-        resultBox.scrollIntoView({
-          behavior:'smooth'
-        });
-
-      }, 1500);
-
+      leadBox.style.display = 'block';
+      leadBox.scrollIntoView({behavior:'smooth'});
     });
 
+    leadForm.addEventListener('submit', function(e){
+      e.preventDefault();
+
+      const nome = document.getElementById('nome').value.trim();
+      const whats = document.getElementById('whats').value.trim();
+
+      if(!nome || !whats) return;
+
+      const resultado = resultados[resultadoFinal];
+
+      resultTitle.innerHTML = resultado.titulo;
+      resultText.innerHTML = resultado.texto;
+
+      const mensagem = encodeURIComponent(
+        `Olá, meu nome é ${nome}. Fiz o Diagnóstico O Seu Lugar e meu resultado foi: ${resultado.titulo}. Quero agendar minha sessão.`
+      );
+
+      whatsResultBtn.href = `https://wa.me/5549998110445?text=${mensagem}`;
+
+      quizArea.classList.add('hidden');
+      leadBox.classList.add('hidden');
+      resultBox.style.display = 'block';
+
+      resultBox.scrollIntoView({behavior:'smooth'});
+    });
   </script>
 
 </body>
