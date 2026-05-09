@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diagnóstico Gratuito | O Seu Lugar®</title>
+  <meta name="description" content="Diagnóstico gratuito: descubra o que está afastando vocês emocionalmente sem perceber." />
+
+  <style>
+    :root{
+      --verde:#005B14;
+      --verde-escuro:#003D0D;
+      --dourado:#C8A24A;
+      --dourado-claro:#F5E7B8;
+      --branco:#FFFFFF;
+      --fundo:#F8FAF8;
+      --texto:#1C1C1C;
+      --suave:#627066;
+      --linha:rgba(200,162,74,.35);
+    }
+
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      background:var(--fundo);
+      color:var(--texto);
+      line-height:1.6;
+    }
+
+    img{max-width:100%;display:block}
+    a{text-decoration:none}
+
+    .wrap{
+      max-width:1120px;
+      margin:0 auto;
+      padding:0 20px;
+    }
+
+    .hero{
+      background:
+        radial-gradient(circle at top right, rgba(200,162,74,.24), transparent 35%),
+        linear-gradient(135deg,var(--verde-escuro),var(--verde));
+      color:#fff;
+      text-align:center;
+      padding:34px 0 76px;
+    }
+
+    .logo{
+      max-width:520px;
+      margin:0 auto 44px;
+      border-radius:8px;
+    }
+
+    .tag{
+      display:inline-block;
+      border:1px solid var(--dourado);
+      color:var(--dourado-claro);
+      padding:8px 16px;
+      border-radius:999px;
+      font-weight:800;
+      font-size:14px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      margin-bottom:20px;
+    }
+
+    h1{
+      font-size:clamp(36px,6vw,68px);
+      line-height:1.05;
+      margin:0 auto 22px;
+      max-width:930px;
+    }
+
+    .hero p{
+      max-width:790px;
+      margin:0 auto 34px;
+      font-size:clamp(18px,2.4vw,24px);
+      color:#eef7ef;
+    }
+
+    .btn{
+      display:inline-block;
+      background:linear-gradient(135deg,var(--dourado),#E7C96F);
+      color:var(--verde-escuro);
+      padding:16px 28px;
+      border-radius:14px;
+      font-weight:900;
+      box-shadow:0 14px 30px rgba(0,0,0,.22);
+      transition:.2s ease;
+    }
+
+    .btn:hover{
+      transform:translateY(-2px);
+      filter:brightness(1.05);
+    }
+
+    section{
+      padding:68px 0;
+    }
+
+    .section-title{
+      text-align:center;
+      font-size:clamp(30px,4vw,46px);
+      color:var(--verde-escuro);
+      line-height:1.15;
+      margin:0 0 14px;
+    }
+
+    .section-sub{
+      max-width:760px;
+      margin:0 auto 42px;
+      text-align:center;
+      color:var(--suave);
+      font-size:19px;
+    }
+
+    .diagnostico{
+      display:grid;
+      gap:24px;
+    }
+
+    .box{
+      background:#fff;
+      border:1px solid var(--linha);
+      border-radius:24px;
+      padding:30px;
+      box-shadow:0 16px 34px rgba(0,61,13,.06);
+    }
+
+    .box h3{
+      margin:0 0 18px;
+      color:var(--verde);
+      font-size:24px;
+    }
+
+    .opcoes{
+      display:grid;
+      gap:12px;
+    }
+
+    .opcao{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      background:#FBFDFB;
+      border:1px solid rgba(0,91,20,.12);
+      border-radius:14px;
+      padding:14px 16px;
+      color:#334238;
+      font-weight:600;
+    }
+
+    .bolinha{
+      width:20px;
+      height:20px;
+      border:2px solid var(--dourado);
+      border-radius:50%;
+      flex:0 0 20px;
+      margin-top:2px;
+    }
+
+    .dark{
+      background:var(--verde-escuro);
+      color:#fff;
+    }
+
+    .dark .section-title{color:#fff}
+    .dark .section-sub{color:#dbeadf}
+
+    .resultados{
+      display:grid;
+      gap:22px;
+    }
+
+    @media(min-width:860px){
+      .resultados{
+        grid-template-columns:repeat(2,1fr);
+      }
+    }
+
+    .resultado{
+      background:#fff;
+      color:var(--texto);
+      border:1px solid var(--linha);
+      border-top:5px solid var(--dourado);
+      border-radius:24px;
+      padding:30px;
+      box-shadow:0 16px 34px rgba(0,0,0,.08);
+    }
+
+    .resultado span{
+      color:var(--dourado);
+      font-weight:900;
+      text-transform:uppercase;
+      font-size:13px;
+      letter-spacing:.08em;
+    }
+
+    .resultado h3{
+      color:var(--verde-escuro);
+      font-size:25px;
+      line-height:1.2;
+      margin:8px 0 14px;
+    }
+
+    .resultado p{
+      color:var(--suave);
+      margin:0 0 12px;
+      font-size:17px;
+    }
+
+    .proximo{
+      margin-top:18px;
+      padding-top:18px;
+      border-top:1px solid var(--linha);
+    }
+
+    .proximo strong{
+      color:var(--verde);
+    }
+
+    .cta{
+      background:linear-gradient(135deg,var(--verde-escuro),var(--verde));
+      color:#fff;
+      border-radius:28px;
+      padding:44px 28px;
+      text-align:center;
+      border:1px solid var(--dourado);
+      box-shadow:0 20px 44px rgba(0,61,13,.18);
+    }
+
+    .cta h2{
+      font-size:clamp(30px,4vw,48px);
+      margin:0 0 14px;
+      line-height:1.15;
+    }
+
+    .cta p{
+      max-width:720px;
+      margin:0 auto 28px;
+      color:#eaf3ec;
+      font-size:19px;
+    }
+
+    footer{
+      background:var(--verde-escuro);
+      color:#fff;
+      text-align:center;
+      padding:26px 20px;
+      font-size:14px;
+    }
+
+    .whatsapp{
+      position:fixed;
+      right:22px;
+      bottom:22px;
+      width:62px;
+      height:62px;
+      border-radius:50%;
+      background:#25D366;
+      color:#fff;
+      display:grid;
+      place-items:center;
+      font-size:30px;
+      box-shadow:0 12px 30px rgba(0,0,0,.25);
+      z-index:20;
+    }
+
+    @media(max-width:640px){
+      .logo{max-width:92%;margin-bottom:34px}
+      section{padding:54px 0}
+      .box,.resultado{padding:24px}
+    }
+  </style>
+</head>
+
+<body>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <img src="logo.jpeg" alt="Logo Mentoria O Seu Lugar" class="logo">
+
+        <span class="tag">Diagnóstico gratuito</span>
+
+        <h1>O que está afastando vocês sem perceber?</h1>
+
+        <p>
+          Para homens e mulheres que sentem que o relacionamento mudou…
+          mas não conseguem explicar exatamente o porquê.
+        </p>
+
+        <a href="https://forms.gle/3kwdrZnUJCz7ohaK8" target="_blank" rel="noopener" class="btn">
+          Ver meu resultado
+        </a>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <h2 class="section-title">Marque mentalmente o que mais representa seu relacionamento hoje</h2>
+        <p class="section-sub">
+          Este diagnóstico foi criado para ajudar você a perceber sinais emocionais que muitas vezes passam despercebidos.
+        </p>
+
+        <div class="diagnostico">
+          <div class="box">
+            <h3>Como você sente sua relação atualmente?</h3>
+
+            <div class="opcoes">
+              <div class="opcao"><span class="bolinha"></span>Parece que estamos vivendo mais como rotina do que como casal</div>
+              <div class="opcao"><span class="bolinha"></span>Falta diálogo verdadeiro entre nós</div>
+              <div class="opcao"><span class="bolinha"></span>Sinto que estamos emocionalmente distantes</div>
+              <div class="opcao"><span class="bolinha"></span>Quase não temos momentos leves juntos</div>
+              <div class="opcao"><span class="bolinha"></span>Muitas conversas acabam em silêncio ou desgaste</div>
+              <div class="opcao"><span class="bolinha"></span>Sinto falta de conexão e presença</div>
+              <div class="opcao"><span class="bolinha"></span>Parece que cada um vive no próprio mundo</div>
+              <div class="opcao"><span class="bolinha"></span>O relacionamento esfriou aos poucos</div>
+              <div class="opcao"><span class="bolinha"></span>Às vezes me sinto sozinho(a) mesmo acompanhado(a)</div>
+              <div class="opcao"><span class="bolinha"></span>Estamos juntos… mas desconectados</div>
+            </div>
+          </div>
+
+          <div class="box">
+            <h3>O que mais tem pesado no relacionamento?</h3>
+
+            <div class="opcoes">
+              <div class="opcao"><span class="bolinha"></span>Falta de diálogo</div>
+              <div class="opcao"><span class="bolinha"></span>Excesso de rotina</div>
+              <div class="opcao"><span class="bolinha"></span>Sobrecarga emocional</div>
+              <div class="opcao"><span class="bolinha"></span>Distância emocional</div>
+              <div class="opcao"><span class="bolinha"></span>Falta de parceria</div>
+              <div class="opcao"><span class="bolinha"></span>Sensação de desgaste</div>
+            </div>
+          </div>
+
+          <div class="box">
+            <h3>O que você gostaria de voltar a sentir?</h3>
+
+            <div class="opcoes">
+              <div class="opcao"><span class="bolinha"></span>Leveza</div>
+              <div class="opcao"><span class="bolinha"></span>Conexão</div>
+              <div class="opcao"><span class="bolinha"></span>Presença</div>
+              <div class="opcao"><span class="bolinha"></span>Companheirismo</div>
+              <div class="opcao"><span class="bolinha"></span>Admiração</div>
+              <div class="opcao"><span class="bolinha"></span>Vontade de viver o relacionamento de verdade novamente</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="cta">
+          <h2>Antes de acessar seu resultado</h2>
+          <p>
+            Para receber seu resultado completo, clique no botão abaixo e preencha apenas seu nome e WhatsApp no formulário oficial.
+          </p>
+
+          <a href="https://forms.gle/3kwdrZnUJCz7ohaK8" target="_blank" rel="noopener" class="btn">
+            Ver meu resultado
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="dark">
+      <div class="wrap">
+        <h2 class="section-title">Possíveis resultados do diagnóstico</h2>
+        <p class="section-sub">
+          Após responder, você poderá identificar qual dinâmica emocional está mais presente no seu relacionamento hoje.
+        </p>
+
+        <div class="resultados">
+          <div class="resultado">
+            <span>Resultado 1</span>
+            <h3>O relacionamento entrou no automático</h3>
+
+            <p>Vocês continuam juntos… mas a conexão emocional foi ficando para depois.</p>
+            <p>A rotina começou a ocupar o espaço da presença, das conversas e da leveza.</p>
+            <p>E aos poucos, o relacionamento começou a sobreviver… em vez de ser vivido.</p>
+
+            <div class="proximo">
+              <p><strong>Próximo passo:</strong> Na Sessão O Seu Lugar®️, nós vamos identificar o que está afastando vocês emocionalmente e como reconstruir mais conexão e presença dentro da relação.</p>
+            </div>
+          </div>
+
+          <div class="resultado">
+            <span>Resultado 2</span>
+            <h3>O peso emocional está desgastando a relação</h3>
+
+            <p>Talvez um de vocês esteja carregando mais do que consegue sustentar.</p>
+            <p>Quando o emocional fica pesado demais, o casal começa a viver em tensão, cobrança ou silêncio.</p>
+            <p>E o relacionamento vai perdendo a leveza.</p>
+
+            <div class="proximo">
+              <p><strong>Próximo passo:</strong> Na Sessão O Seu Lugar®️, nós vamos olhar para o que está gerando desgaste emocional dentro da relação e o que precisa ser reorganizado.</p>
+            </div>
+          </div>
+
+          <div class="resultado">
+            <span>Resultado 3</span>
+            <h3>Falta presença emocional no relacionamento</h3>
+
+            <p>Nem sempre o problema é falta de amor.</p>
+            <p>Às vezes, o casal apenas deixou de se enxergar emocionalmente.</p>
+            <p>Falta conversa, conexão, troca e presença verdadeira.</p>
+            <p>E isso cria distância mesmo estando juntos.</p>
+
+            <div class="proximo">
+              <p><strong>Próximo passo:</strong> Na Sessão O Seu Lugar®️, nós vamos olhar para a dinâmica emocional do relacionamento e entender o que está impedindo vocês de se conectarem de verdade.</p>
+            </div>
+          </div>
+
+          <div class="resultado">
+            <span>Resultado 4</span>
+            <h3>Vocês precisam voltar a ocupar o lugar de casal</h3>
+
+            <p>Talvez a relação tenha virado apenas rotina, responsabilidade e tarefas.</p>
+            <p>Mas relacionamento não sobrevive só de convivência.</p>
+            <p>Ele precisa de presença, construção e conexão emocional.</p>
+
+            <div class="proximo">
+              <p><strong>Próximo passo:</strong> Na Sessão O Seu Lugar®️, nós vamos entender onde vocês deixaram de ocupar o lugar de casal e como começar a reconstruir essa relação.</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align:center;margin-top:38px">
+          <a href="https://forms.gle/3kwdrZnUJCz7ohaK8" target="_blank" rel="noopener" class="btn">
+            Ver meu resultado completo
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="cta">
+          <h2>Quer entender o que está acontecendo na relação?</h2>
+          <p>
+            Responda ao diagnóstico gratuito e receba o direcionamento inicial para o seu momento atual.
+          </p>
+
+          <a href="https://forms.gle/3kwdrZnUJCz7ohaK8" target="_blank" rel="noopener" class="btn">
+            Ver meu resultado
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © Mentoria O Seu Lugar® — Todos os direitos reservados.
+  </footer>
+
+  <a class="whatsapp" href="https://wa.me/5549998110445?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20o%20Diagn%C3%B3stico%20O%20Seu%20Lugar" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+    ☎
+  </a>
+
+</body>
+</html>
