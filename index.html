@@ -44,14 +44,7 @@
         linear-gradient(135deg,var(--green-dark),var(--green));
       color:#fff;
       text-align:center;
-      padding:40px 0 78px;
-    }
-
-    .logo{
-      max-width:520px;
-      width:100%;
-      margin:0 auto 40px;
-      border-radius:8px;
+      padding:70px 0 78px;
     }
 
     .tag{
@@ -99,7 +92,6 @@
     }
 
     .quiz-box,
-    .lead-box,
     .result-box{
       background:#fff;
       border:1px solid var(--line);
@@ -109,8 +101,7 @@
       box-shadow:var(--shadow);
     }
 
-    .quiz-box h3,
-    .lead-box h3{
+    .quiz-box h3{
       color:var(--green);
       font-size:28px;
       margin-bottom:22px;
@@ -121,9 +112,7 @@
       gap:14px;
     }
 
-    .option input{
-      display:none;
-    }
+    .option input{display:none}
 
     .option label{
       display:flex;
@@ -188,6 +177,7 @@
       cursor:pointer;
       transition:.25s ease;
       box-shadow:0 14px 30px rgba(0,0,0,.15);
+      text-transform:uppercase;
     }
 
     .btn:hover{
@@ -201,38 +191,6 @@
       color:#9A3412;
       font-weight:700;
       text-align:center;
-    }
-
-    .lead-box{
-      display:none;
-      margin-top:44px;
-      border-top:5px solid var(--gold);
-    }
-
-    .form-grid{
-      display:grid;
-      gap:16px;
-    }
-
-    .field label{
-      display:block;
-      font-weight:800;
-      color:var(--green-dark);
-      margin-bottom:8px;
-    }
-
-    .field input{
-      width:100%;
-      padding:16px;
-      border-radius:14px;
-      border:2px solid rgba(0,91,20,.14);
-      font-size:17px;
-      outline:none;
-    }
-
-    .field input:focus{
-      border-color:var(--gold);
-      box-shadow:0 0 0 4px rgba(200,162,74,.16);
     }
 
     .result-box{
@@ -268,13 +226,33 @@
     }
 
     .next-step{
-      margin-top:30px;
-      padding-top:30px;
+      margin-top:34px;
+      padding-top:34px;
       border-top:1px solid var(--line);
+    }
+
+    .next-step h3{
+      color:var(--green-dark);
+      font-size:clamp(30px,4vw,44px);
+      line-height:1.15;
+      margin-bottom:22px;
     }
 
     .next-step strong{
       color:var(--green);
+    }
+
+    .price{
+      color:var(--green-dark)!important;
+      font-size:clamp(46px,7vw,70px)!important;
+      font-weight:900;
+      line-height:1;
+      margin:8px 0 30px!important;
+    }
+
+    .gold-text{
+      color:var(--gold);
+      font-weight:900;
     }
 
     .hidden{display:none!important}
@@ -289,10 +267,10 @@
     }
 
     @media(max-width:768px){
-      .hero{padding:30px 0 60px}
-      .logo{max-width:92%}
+      .hero{padding:56px 0 60px}
       section{padding:54px 0}
-      .quiz-box,.lead-box,.result-box{padding:24px}
+      .quiz-box,.result-box{padding:24px}
+      .btn{width:100%;text-align:center}
     }
   </style>
 </head>
@@ -301,7 +279,6 @@
 
   <section class="hero">
     <div class="wrap">
-    
       <span class="tag">Diagnóstico gratuito</span>
 
       <h1>O que está afastando vocês sem perceber?</h1>
@@ -371,7 +348,7 @@
         </div>
 
         <div class="cta">
-          <button class="btn" id="showFormBtn">Ver meu resultado</button>
+          <button class="btn" id="showResultBtn">Ver meu resultado</button>
           <div class="alert" id="quizAlert">Selecione pelo menos uma alternativa para continuar.</div>
         </div>
 
@@ -381,10 +358,6 @@
         <span class="result-tag">Seu resultado</span>
         <h2 id="resultTitle"></h2>
         <div id="resultText"></div>
-
-        <a class="btn" id="whatsResultBtn" href="https://wa.me/5549998110445" target="_blank" rel="noopener">
-          Agendar minha sessão
-        </a>
       </div>
 
     </div>
@@ -395,15 +368,46 @@
   </footer>
 
   <script>
-    const showFormBtn = document.getElementById('showFormBtn');
+    const showResultBtn = document.getElementById('showResultBtn');
     const quizAlert = document.getElementById('quizAlert');
     const quizArea = document.getElementById('quizArea');
     const resultBox = document.getElementById('resultBox');
     const resultTitle = document.getElementById('resultTitle');
     const resultText = document.getElementById('resultText');
-    const whatsResultBtn = document.getElementById('whatsResultBtn');
 
     let resultadoFinal = 'resultado1';
+
+    const whatsappLink = 'https://wa.me/5549998110445?text=' + encodeURIComponent(
+      'Olá, Evandro. Fiz o diagnóstico e quero enviar meu áudio para participar da seleção da Sessão O Seu Lugar.'
+    );
+
+    function blocoSessao(audioTexto){
+      return `
+        <div class="next-step">
+          <h3>Sessão O Seu Lugar®</h3>
+
+          <p>O diagnóstico trouxe clareza sobre onde vocês podem ter saído do lugar na relação.</p>
+
+          <p>
+            O próximo passo é a Sessão O Seu Lugar®, um encontro individual e online onde olhamos para a dinâmica do relacionamento,
+            identificamos o que está afastando vocês emocionalmente e iniciamos um movimento para reconstruir mais presença,
+            diálogo e leveza.
+          </p>
+
+          <p>O valor da sessão é:</p>
+
+          <p class="price">R$ 260</p>
+
+          <p>Toda semana escolho <strong>3 pessoas</strong> para fazerem por <span class="gold-text">R$ 80</span>.</p>
+
+          <p>${audioTexto}</p>
+
+          <a class="btn" href="${whatsappLink}" target="_blank" rel="noopener">
+            ENVIAR MEU ÁUDIO
+          </a>
+        </div>
+      `;
+    }
 
     const resultados = {
       resultado1: {
@@ -412,34 +416,35 @@
           <p>Vocês continuam juntos… mas a conexão emocional foi ficando para depois.</p>
           <p>A rotina começou a ocupar o espaço da presença, das conversas e da leveza.</p>
           <p>E aos poucos, o relacionamento começou a sobreviver… em vez de ser vivido.</p>
-          <div class="next-step">
-            <p><strong>Próximo passo:</strong> Na Sessão O Seu Lugar®️, nós vamos identificar o que está afastando vocês emocionalmente e como reconstruir mais conexão e presença dentro da relação.</p>
-          </div>
+          <p>O problema não é falta de amor.</p>
+          <p>O problema é a falta de presença no dia a dia.</p>
+          ${blocoSessao('Para participar da seleção, me envie um áudio contando como a rotina tem afastado vocês hoje.')}
         `
       },
 
       resultado2: {
-        titulo: 'O peso emocional está desgastando a relação',
+        titulo: 'O peso emocional está desgastando você e a relação',
         texto: `
-          <p>Talvez um de vocês esteja carregando mais do que consegue sustentar.</p>
-          <p>Quando o emocional fica pesado demais, o casal começa a viver em tensão, cobrança ou silêncio.</p>
-          <p>E o relacionamento vai perdendo a leveza.</p>
-          <div class="next-step">
-            <p><strong>Próximo passo:</strong> Na Sessão O Seu Lugar®️, nós vamos olhar para o que está gerando desgaste emocional dentro da relação e o que precisa ser reorganizado.</p>
-          </div>
+          <p>Você não está apenas cansado(a).</p>
+          <p><strong>Você está carregando responsabilidades demais dentro da relação.</strong></p>
+          <p>Há muito tempo você tenta resolver, sustentar, evitar conflitos e manter tudo funcionando.</p>
+          <p>E quanto mais peso emocional se acumula, mais difícil fica sentir leveza no relacionamento.</p>
+          <p>Com o tempo, esse excesso cria silêncio, cobrança, distância e desgaste.</p>
+          <p>Você não chegou até aqui porque é fraco(a).</p>
+          <p><strong>Você chegou até aqui porque talvez esteja sustentando mais do que deveria.</strong></p>
+          ${blocoSessao('Para participar da seleção, me envie um áudio contando o que mais está pesando no relacionamento hoje.')}
         `
       },
 
       resultado3: {
         titulo: 'Falta presença emocional no relacionamento',
         texto: `
-          <p>Nem sempre o problema é falta de amor.</p>
-          <p>Às vezes, o casal apenas deixou de se enxergar emocionalmente.</p>
-          <p>Falta conversa, conexão, troca e presença verdadeira.</p>
-          <p>E isso cria distância mesmo estando juntos.</p>
-          <div class="next-step">
-            <p><strong>Próximo passo:</strong> Na Sessão O Seu Lugar®️, nós vamos olhar para a dinâmica emocional do relacionamento e entender o que está impedindo vocês de se conectarem de verdade.</p>
-          </div>
+          <p>O problema não é falta de amor.</p>
+          <p>O problema é que o casal deixou de se enxergar emocionalmente.</p>
+          <p>Falta conversa, troca, escuta e presença verdadeira.</p>
+          <p>E isso cria distância mesmo quando os dois continuam juntos.</p>
+          <p>Quando a presença desaparece, o relacionamento começa a esfriar nos detalhes.</p>
+          ${blocoSessao('Para participar da seleção, me envie um áudio contando onde você sente falta de presença dentro da relação.')}
         `
       },
 
@@ -449,9 +454,9 @@
           <p>Talvez a relação tenha virado apenas rotina, responsabilidade e tarefas.</p>
           <p>Mas relacionamento não sobrevive só de convivência.</p>
           <p>Ele precisa de presença, construção e conexão emocional.</p>
-          <div class="next-step">
-            <p><strong>Próximo passo:</strong> Na Sessão O Seu Lugar®️, nós vamos entender onde vocês deixaram de ocupar o lugar de casal e como começar a reconstruir essa relação.</p>
-          </div>
+          <p>Vocês podem estar funcionando como família, como parceiros de casa ou como equipe da rotina…</p>
+          <p>mas deixando de ocupar o lugar de casal.</p>
+          ${blocoSessao('Para participar da seleção, me envie um áudio contando em que momento vocês sentiram que deixaram de viver como casal.')}
         `
       }
     };
@@ -482,7 +487,7 @@
       resultadoFinal = maior;
     }
 
-    showFormBtn.addEventListener('click', () => {
+    showResultBtn.addEventListener('click', () => {
       const total = document.querySelectorAll('input[type="checkbox"]:checked').length;
 
       if(total === 0){
@@ -497,12 +502,6 @@
 
       resultTitle.innerHTML = resultado.titulo;
       resultText.innerHTML = resultado.texto;
-
-      const mensagem = encodeURIComponent(
-        `Olá. Fiz o Diagnóstico O Seu Lugar e meu resultado foi: ${resultado.titulo}. Quero agendar minha sessão.`
-      );
-
-      whatsResultBtn.href = `https://wa.me/5549998110445?text=${mensagem}`;
 
       quizArea.classList.add('hidden');
       resultBox.style.display = 'block';
