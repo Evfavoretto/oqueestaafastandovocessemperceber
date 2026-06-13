@@ -288,23 +288,6 @@
       margin-top:70px;
     }
 
-    .whatsapp{
-      position:fixed;
-      right:22px;
-      bottom:22px;
-      width:62px;
-      height:62px;
-      border-radius:50%;
-      background:#25D366;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      color:#fff;
-      font-size:30px;
-      box-shadow:0 12px 28px rgba(0,0,0,.25);
-      z-index:999;
-    }
-
     @media(max-width:768px){
       .hero{padding:30px 0 60px}
       .logo{max-width:92%}
@@ -394,31 +377,6 @@
 
       </div>
 
-      <div class="lead-box" id="leadBox">
-        <h3>Antes de acessar seu resultado</h3>
-        <p style="color:var(--muted);font-size:18px;margin-bottom:24px;">
-          Preencha seus dados abaixo para receber o resultado completo do seu diagnóstico.
-        </p>
-
-        <form id="leadForm">
-          <div class="form-grid">
-            <div class="field">
-              <label for="nome">Nome</label>
-              <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required>
-            </div>
-
-            <div class="field">
-              <label for="whats">WhatsApp</label>
-              <input type="tel" id="whats" name="whats" placeholder="Digite seu WhatsApp" required>
-            </div>
-          </div>
-
-          <div class="cta">
-            <button class="btn" type="submit">Receber meu resultado</button>
-          </div>
-        </form>
-      </div>
-
       <div class="result-box" id="resultBox">
         <span class="result-tag">Seu resultado</span>
         <h2 id="resultTitle"></h2>
@@ -436,14 +394,10 @@
     © O Seu Lugar® — Todos os direitos reservados.
   </footer>
 
-  <a class="whatsapp" href="https://wa.me/5549998110445" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">☎</a>
-
   <script>
     const showFormBtn = document.getElementById('showFormBtn');
     const quizAlert = document.getElementById('quizAlert');
     const quizArea = document.getElementById('quizArea');
-    const leadBox = document.getElementById('leadBox');
-    const leadForm = document.getElementById('leadForm');
     const resultBox = document.getElementById('resultBox');
     const resultTitle = document.getElementById('resultTitle');
     const resultText = document.getElementById('resultText');
@@ -539,31 +493,18 @@
       quizAlert.style.display = 'none';
       calcularResultado();
 
-      leadBox.style.display = 'block';
-      leadBox.scrollIntoView({behavior:'smooth'});
-    });
-
-    leadForm.addEventListener('submit', function(e){
-      e.preventDefault();
-
-      const nome = document.getElementById('nome').value.trim();
-      const whats = document.getElementById('whats').value.trim();
-
-      if(!nome || !whats) return;
-
       const resultado = resultados[resultadoFinal];
 
       resultTitle.innerHTML = resultado.titulo;
       resultText.innerHTML = resultado.texto;
 
       const mensagem = encodeURIComponent(
-        `Olá, meu nome é ${nome}. Fiz o Diagnóstico O Seu Lugar e meu resultado foi: ${resultado.titulo}. Quero agendar minha sessão.`
+        `Olá. Fiz o Diagnóstico O Seu Lugar e meu resultado foi: ${resultado.titulo}. Quero agendar minha sessão.`
       );
 
       whatsResultBtn.href = `https://wa.me/5549998110445?text=${mensagem}`;
 
       quizArea.classList.add('hidden');
-      leadBox.classList.add('hidden');
       resultBox.style.display = 'block';
 
       resultBox.scrollIntoView({behavior:'smooth'});
